@@ -1,0 +1,67 @@
+\documentclass[12pt, oneside]{book} 
+\usepackage[utf8]{vietnam}
+\usepackage{dsfont}
+\usepackage{amsmath, amssymb, color, graphicx, geometry}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{svg}
+\usepackage{stmaryrd}
+\usepackage{subfigure}
+\usepackage{xcolor}
+\usepackage{mathstyle}
+\geometry{tmargin=.75in, bmargin=.75in, lmargin=.75in, rmargin = .75in}  
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Cdot}{\boldsymbol{\cdot}}
+
+\newcommand{\nsubsection}[2]{
+    \setcounter{subsubsection}{#1}
+    \addtocounter{subsubsection}{-1}
+    \subsubsection{#2}
+}
+\hypersetup{
+    colorlinks = true
+    linkcolor = true
+}
+\newcommand{\numberset}[1]{\llbracket #1\rrbracket}
+%--------- \subsubsubsection ----------
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+%--------- \subsubsubsection -----------
+
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{defn}{Definition}[chapter]
+\newtheorem{conv}{Convention}[chapter]
+\newtheorem{rem}{Remark}[chapter]
+\newtheorem{lem}{Lemma}[chapter]
+\newtheorem{cor}{Corollary}[chapter]
+\numberwithin{equation}{chapter}
+
+\title{Mathematical Analysis of Machine Learning
+Algorithms - Tong Zhang}
+\author{Machine Learning Theory Group}
+\date{Academic Year 2025-2026}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\vspace{.25in}
+
+%\section{Introduction}
+
+\input{chapter1/chapter1}
+\input{chapter2/chapter2}
+
+\end{document}
