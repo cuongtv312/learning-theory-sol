@@ -1,0 +1,185 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{Exercise 2.7}
+\author{22028167 Hoàng Văn Phi}
+\date{October 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Corollary 2.26}
+
+\begin{itemize}
+    \item[+] Follow Theorem 2.25 we have:
+    \[
+    \Pr(\bar{X}_n \geq \mu + \epsilon) \leq \inf_{\lambda>0} 
+    \left[ -\lambda n(\mu + \epsilon) + \sum_{i=1}^n \ln \mathbb{E} e^{\lambda X_i} \right].
+    \]
+
+    \item[+] We also have: 
+    
+    \[
+    \ln \mathbb{E} e^{\lambda X_i} \leq \lambda \mathbb{E} X_i + \frac{1}{2} \lambda^2 b_i,
+    \]
+    
+    So:
+
+    \[
+    \Pr(\bar{X}_n \geq \mu + \epsilon) \leq \inf_{\lambda>0} 
+    \left[ -\lambda n(\mu + \epsilon) + \sum_{i=1}^n (\lambda \mathbb{E} X_i + \frac{1}{2} \lambda^2 b_i) \right].
+    \]
+
+    \[
+    = \inf_{\lambda>0} 
+    \left[ -\lambda n(\mu + \epsilon) + \lambda \sum_{i=1}^n  \mathbb{E} X_i + \frac{1}{2} \lambda^2 \sum_{i=1}^n b_i \right].
+    \]
+
+    \[
+    = \inf_{\lambda>0} 
+    \left[ -\lambda n(\mu + \epsilon) + \lambda \mathbb{E} \sum_{i=1}^n X_i + \frac{1}{2} \lambda^2 \sum_{i=1}^nb_i \right].
+    \]
+
+    \[
+    = \inf_{\lambda>0} 
+    \left[ -\lambda n(\mu + \epsilon) + \lambda n \mu + \frac{1}{2} \lambda^2 \sum_{i = 1}^{n} b_i \right].
+    \]
+    
+    \item[+] Choose $\lambda = \frac{n\epsilon}{\sum_{i = 1}^{n}b_i}$, we have:
+
+    % Log domain ? 
+    
+    \[
+    \Pr(\bar{X}_n \geq \mu + \epsilon) \leq \exp(-\lambda n(\mu + \epsilon) + \lambda n \mu + \frac{1}{2} \lambda^2 \sum_{i=1}^n b_i)
+    \]
+
+     \[
+    = \exp(-\frac{n\epsilon}{\sum_{i = 1}^{n}b_i} n(\mu + \epsilon) + \frac{n\epsilon}{\sum_{i = 1}^{n}b_i} n \mu + \frac{1}{2} (\frac{n\epsilon}{\sum_{i = 1}^{n}b_i})^2 \sum_{i=1}^n b_i)
+    \]
+
+    \[
+    = \exp( -\frac{n^2\epsilon^2}{2\sum_{i = 1}^{n}b_i})
+    \]
+
+    
+\end{itemize}
+
+\section{Corollary 2.28}
+
+\begin{itemize}
+    \item[+] Let $X_i^{'} = X_i - E(X_i)$, we have:
+    \[
+    \ln Ee^{\lambda X_i} = \ln Ee^{\lambda(X_i^{'} + EX_i)}
+    \]
+
+    \[
+    = \ln Ee^{\lambda X_i^{'}} +\ln Ee^{\lambda EX_i}
+    \]
+    
+    \[
+    = \ln Ee^{\lambda X_i^{'}} + \lambda EX_i
+    \]
+    \item[+] We also have $\ln(x) \leq x - 1$:
+
+    \[
+    \ln Ee^{\lambda X_i^{'}} + \lambda EX_i \leq\lambda EX_i + Ee^{\lambda X_i^{'}} - 1
+    \]
+
+    \[
+     = \lambda EX_i + Ee^{\lambda X_i^{'}} - 1 - E\lambda X_i^{'} \quad (X_i^{'2} \mbox{ is variance of  } X_i)
+    \]
+
+    \[
+     = \lambda EX_i + \frac{\lambda ^ 2 E(e^{\lambda X_i^{'}} - 1 - \lambda X_i^{'})X_i^{'2}}{\lambda ^ 2 X_i^{'2}}
+    \]
+
+    + Given $X_i - E(X_i) \leq b$ and $\phi(x) = \frac{e^x - x - 1}{x^2}$ non-decreasing:
+
+    \[
+     \lambda EX_i + \frac{\lambda ^ 2 E(e^{\lambda X_i^{'}} - 1 - \lambda X_i^{'})X_i^{'2}}{\lambda ^ 2 X_i^{'2}} \leq \lambda EX_i + \lambda ^ 2 E\frac{(e^{\lambda b} - 1 - \lambda b)}{\lambda ^ 2 b^2} Var(X_i)
+    \]
+
+    \item[+] Follow Theorem 2.25 we have:
+    
+    \[
+    \Pr(\bar{X}_n \geq \mu + \epsilon) \leq \inf_{\lambda>0} 
+    \left[ -\lambda n(\mu + \epsilon) + \sum_{i=1}^n \ln \mathbb{E} e^{\lambda X_i} \right].
+    \]
+    
+    \[
+    \leq \inf_{\lambda>0} 
+    \left[ -\lambda n(\mu + \epsilon) + \sum_{i=1}^n (\lambda EX_i + \lambda ^ 2 E\frac{(e^{\lambda b} - 1 - \lambda b)}{\lambda ^ 2 b^2} Var(X_i)) \right].
+    \]
+
+    \[
+    \leq \inf_{\lambda>0} 
+    \left[ -\lambda n(\mu + \epsilon) +  \lambda n \mu + \lambda ^ 2 \sum_{i=1}^n\frac{(e^{\lambda b} - 1 - \lambda b)}{\lambda^2 b^2}Var(X_i) \right]. (1)
+    \]
+
+    \item[+] Lets analyze $\frac{(e^{\lambda b} - 1 - \lambda b)}{\lambda^2 b^2}$, use Taylor expansion, we have:
+
+    \[
+    e^x = 1 + x + \frac{x^2}{2}\sum_{i=0}^\infty \frac{2!x^i}{(i + 2)!}
+    \]
+
+    \[
+    \frac{e^x - x - 1}{x^2} = \frac{1}{2}\sum_{i=0}^\infty \frac{2!x^i}{(i + 2)!}
+    \]
+
+    \[
+    \leq \frac{1}{2}\sum_{i=0}^\infty \frac{x^i}{3^i} = \frac{1}{2(1 - x/3)}
+    \]
+
+    \item Substituting this into (1), we obtain:
+
+    \[
+    \inf_{\lambda>0} 
+    \left[ -\lambda n(\mu + \epsilon) +  \lambda n \mu + \lambda ^ 2 \sum_{i=1}^n\frac{(e^{\lambda b} - 1 - \lambda b)}{\lambda^2 b^2}Var(X_i) \right]. 
+    \]
+
+    \[
+    \leq \inf_{\lambda>0} 
+    \left[ -\lambda n\epsilon + \lambda ^ 2 \sum_{i=1}^n\frac{1}{2(1 - \lambda b/3)} Var(X_i) \right].
+    \]
+
+    \item[+] Choose $\lambda = \frac{\epsilon}{((\sum_{i = 1}^{n}Var(i) / n) + (b /3) \epsilon)} \leftrightarrow \epsilon = \frac{\lambda \sum_{i = 1}^{n}Var(i)}{(1 -  \lambda b /3) n}$, we have:
+
+    \[
+    \inf_{\lambda>0} 
+    \left[ -\lambda n\epsilon + \lambda ^ 2 \sum_{i=1}^n\frac{1}{2(1 - \lambda b/3)} Var(X_i) \right].
+    \]
+
+    \[
+    = \inf_{\lambda>0} 
+    \left[ -\lambda n \frac{\lambda \sum_{i = 1}^{n}Var(i)}{(1 -  \lambda b /3)n} + \lambda ^ 2 \sum_{i=1}^n\frac{1}{2(1 - \lambda b/3)} Var(X_i) \right].
+    \]
+
+    \[
+    = \inf_{\lambda>0} 
+    \left[ - \lambda ^ 2 \sum_{i=1}^n\frac{1}{2(1 - \lambda b/3)} Var(X_i) \right].
+    \]
+
+    \[
+    = \inf_{\lambda>0} 
+    \left[ - n \lambda \epsilon / 2 \right].
+    \]
+
+    \[
+    = \inf_{\lambda>0} 
+    \left[ - n \frac{\epsilon}{((\sum_{i = 1}^{n}Var(i) / n) + (b /3) \epsilon)} \epsilon / 2 \right].
+    \]
+
+    \[
+    = \inf_{\lambda>0} 
+    \left[ -\frac{n ^ 2 \epsilon ^ 2}{2\sum_{i = 1}^{n}Var(i) + 2nb\epsilon /3} \right].
+    \]
+
+    \item[+] Or:
+
+    \[
+    \Pr(\bar{X}_n \geq \mu + \epsilon) \leq \exp\left[ -\frac{n ^ 2 \epsilon ^ 2}{2\sum_{i = 1}^{n}Var(i) + 2nb\epsilon /3} \right]
+    \]
+\end{itemize}
+
+\end{document}
