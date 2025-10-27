@@ -1,0 +1,34 @@
+        
+        % \begin{itemize}
+        %     \item To estimate $\text{ln}\E exp(\lambda X_1)$   
+        % \end{itemize}
+
+Chứng minh hàm $\phi(z) = (e^z - z - 1)/z^2$ là không giảm
+
+Ta có:
+\[
+    \phi'(z) = \frac{e^z(z - 2) + z + 2}{z^3}
+\]
+
+Đặt $g(z) = e^z(z - 2) + z + 2$,
+\[
+    g'(z) = e^z(z - 2) + e^z,
+\]
+
+và 
+\[
+g''(z) = e^z z,
+\]
+      
+
+Với $z > 0$, $g''(z) > 0$ nên $g'(z)$ là hàm đơn diệu tăng
+Lại có, $g'(z) = 0$ tại $z = 0$ nên $g'(z) > 0$ với mọi $z > 0$
+Do đó, $g(z)$ là hàm đơn điệu tăng với mọi $z > 0$
+Lại có, $g(0) = 0$ nên $g(z) > 0$ với mọi $z > 0$. Vậy $\phi'(z) > 0$ với mọi $z > 0$
+
+Với $z < 0$, ta có $g''(z) < 0$ nên $g'(z)$ là hàm đơn điệu giảm
+Lại có, $g'(z) = 0$ tại $z = 0$ nên $g'(z) > 0$ với mọi $z < 0$
+Do đó, $g(z)$ là hàm đơn điệu tăng với mọi $z < 0$
+Lại có, $g(0) = 0$ nên $g(z) < 0$ với mọi $z < 0$. Vậy $\phi'(z) > 0$ với mọi $z < 0$
+
+Suy ra $\phi'(z) > 0$ với mọi $z \neq 0$. Từ đó, ta kết luận $\phi(z)$ là hàm không giảm
