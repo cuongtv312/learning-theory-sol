@@ -1,0 +1,46 @@
+\textbf{Exercise 2.3}
+Prove the following inequality:
+\[
+\mathrm{KL}(z \,\|\, \mu) \geq \frac{(z - \mu)^2}{\max(z + \mu,\, 2\mu)},
+\]
+which is needed in the proof of Corollary~2.18.
+
+\textbf{Proof:}
+\[
+KL(z\|\mu) = z\ln\frac{z}{\mu} + (1-z)\ln\frac{1-z}{1-\mu}
+\]
+
+\textbf{With $z \geq \mu$:}
+Let 
+\begin{equation}
+    f(z) = KL(z||\mu) - \frac{(z - \mu)^2}{z + \mu}
+\end{equation}
+We need to prove $f(z) \geq 0$ with $z \in [\mu, 1]$
+Since $f(\mu) = 0$, we consider:
+\begin{equation}
+f'(z) = \ln \frac{z(1-\mu)}{\mu (1-z)} - \frac{(z-\mu)(z+3\mu)}{(z+\mu)^2}
+\end{equation}
+
+We have:
+\begin{equation}
+    f''(z) = \frac{(z+\mu)^3 - 8\mu^2z(1-z)}{z(1-z)(z+\mu)^3}
+\end{equation}
+Set $\psi(z) = (z+\mu)^3 - 8\mu^2z(1-z)$, $\psi'(z) = 3(z+\mu)^2 - 8\mu^2(1-2z)$, $\psi''(z) = 6(z+\mu) + 16\mu^2 > 0$ and $\psi'(\mu) = 0$ implies $\psi' > 0$. So, $\psi > 0 \forall z \in [\mu, 1]$ since $\psi(\mu) = 8 \mu^4 > 0$
+That proves $f''(z) > 0 \implies f'(z) > 0 \implies f(z) > 0$ means $KL(z||\mu) \geq \frac{(z-\mu)^2}{z + \mu} \forall z \in[\mu, 1]$
+
+\textbf{With $z \leq \mu$:}
+Similar to before case, we have
+\begin{equation}
+    \begin{split}
+    g(z) = KL(z||\mu) - \frac{(z-\mu)^2}{2\mu}\\\\
+    g'(z) = \ln \frac{z(1-\mu)}{\mu (1-z)} - \frac{z-\mu}{\mu}\\\\
+    g''(z) = \frac{1}{z(1-z)} - \frac{1}{\mu}
+    \end{split}
+\end{equation}
+
+Since $z(1-z) \leq z \leq \mu $, $g''(z) \geq 0$, $g'(\mu) = 0 \implies g'(z) < 0$. So, $g(z) > 0$ with $g(\mu) = 0$
+
+Combining the two cases gives
+\[
+\mathrm{KL}(z \,\|\, \mu) \geq \frac{(z - \mu)^2}{\max(z + \mu,\, 2\mu)}
+\]
