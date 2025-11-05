@@ -1,0 +1,56 @@
+\textbf{Exercise 3.1.}
+Assume that events $E_j$ ($j=1,\dots,m$) are independent. Prove that
+\[
+\Pr\left(\bigcup_{j=1}^m E_j\right) \geq \sum_{j=1}^m \Pr(E_j) - \frac{1}{2}\left(\sum_{j=1}^m \Pr(E_j)\right)^2.
+\]
+
+\textbf{Proof:}
+
+We have:
+\[
+Pr(E_1) \geq Pr(E_1) - \frac{1}{2} Pr(E_1)^2
+\]
+Assuming:
+\[
+Pr\left(\bigcup_{j=1}^m E_j\right) \geq \sum_{j=1}^m Pr(E_j) - \frac{1}{2}\left(\sum_{j=1}^mPr(E_j)\right)^2
+\]
+To complete the proof by induction, we need to prove:
+\[
+Pr\left(\bigcup_{j=1}^{m + 1} E_j\right) \geq \sum_{j=1}^{m+1} Pr(E_j) - \frac{1}{2}\left(\sum_{j=1}^{m+1}Pr(E_j)\right)^2
+\]
+We have:
+\[
+Pr\left(\bigcup_{j=1}^{m + 1} E_j\right) = Pr\left(\bigcup_{j=1}^m E_j\right) + Pr(E_{m+1}) - 
+Pr\left(\bigcup_{j=1}^m E_j \bigcap E_{m+1} \right)
+\]
+\[
+\geq 
+\sum_{j=1}^m Pr(E_j) - \frac{1}{2}\left(\sum_{j=1}^mPr(E_j)\right)^2 + Pr(E_{m+1}) - 
+Pr\left(\bigcup_{j=1}^m E_j \bigcap E_{m+1} \right)
+\]
+We claim:
+\[
+\left(\sum_{j=1}^{m + 1} Pr(E_j)\right)^2 - \left(\sum_{j=1}^{m} Pr(E_j)\right)^2 \geq 2Pr\left(\bigcup_{j=1}^m E_j \bigcap E_{m+1} \right)
+\]
+Because events are independent:
+\[
+Pr(E_{m+1}) \left( \sum_{j=1}^{m+1}Pr(E_j) + \sum_{j=1}^m Pr(E_j) \right)
+\]
+\[
+\geq 2 Pr(E_{m+1}) Pr\left(\bigcup_{j=1}^m E_j \right)
+= 2Pr\left(\bigcup_{j=1}^m E_j \bigcap E_{m+1} \right)
+\]
+Which means
+\[
+\sum_{j=1}^m Pr(E_j) - \frac{1}{2}\left(\sum_{j=1}^mPr(E_j)\right)^2 + Pr(E_{m+1}) - 
+Pr\left(\bigcup_{j=1}^m E_j \bigcap E_{m+1} \right)
+\]
+\[
+\geq \sum_{j=1}^{m+1} Pr(E_j) - \frac{1}{2}\left(\sum_{j=1}^{m+1}Pr(E_j)\right)^2
+\]
+\[
+\implies
+\Pr\left(\bigcup_{j=1}^m E_j\right) \geq \sum_{j=1}^m \Pr(E_j) - \frac{1}{2}\left(\sum_{j=1}^m \Pr(E_j)\right)^2
+\forall m \geq 1
+\]
+\end{document}
