@@ -1,5 +1,50 @@
-        
-        \begin{itemize}
-            \item To estimate $\text{ln}\E exp(\lambda X_1)$   
-        \end{itemize}
+\textbf{Exercise 2.1} Assume that $X_1, X_2, \ldots, X_n$ are real-valued i.i.d. random variables with density function
+\[
+    p(x) = \frac{x^2}{\sqrt{2\pi}} \exp\left(-\frac{x^2}{2}\right).
+\]
+Let $\mu = \mathbb{E}X_1$, and $\bar{X}_n = n^{-1}\sum_{i=1}^{n} X_i$.
+\begin{itemize}
+    \item Estimate $\ln \mathbb{E}\exp(\lambda X_1)$
+    \item Estimate $\Pr(\bar{X}_n \ge \mu + \epsilon)$
+    \item Estimate $\Pr(\bar{X}_n \le \mu - \epsilon)$
+\end{itemize}
+
+\textbf{Solution:}
+\begin{itemize}
+    \item Estimate $\ln \mathbb{E}\exp(\lambda X_1)$
+    \begin{align*}
+        \mathbb{E}\exp(\lambda X_1) &= \int_{- \infty}^{\infty} \frac{x^2}{\sqrt{2 \pi}} \exp\left(\frac{-x^2}{2} + \lambda x\right) dx \\ 
+        &= \exp \left( \frac{\lambda^2}{2} \right) \int_{- \infty}^{\infty} x^2 \frac{1}{\sqrt{2 \pi}} \exp \left( \frac{-(x - \lambda)^2}{2} \right) dx\\
+        &= \exp \left( \frac{\lambda^2}{2} \right) \mathbb{E}_{X \sim \mathcal{N}(\lambda, 1)}[X^2] \\
+        &= \exp \left( \frac{\lambda^2}{2} \right) \left[ (\mathbb{E}_{X \sim \mathcal{N}(\lambda, 1)}[X])^2 + Var_{X \sim \mathcal{N}(\lambda, 1)}(X) \right] \\
+        &= \exp \left( \frac{\lambda^2}{2} \right) (\lambda^2 + 1)
+    \end{align*}
+    Therefore, we have:
+    \begin{align*}
+        \ln \mathbb{E}\exp(\lambda X_1) = \frac{\lambda^2}{2} + \ln (\lambda^2 + 1)
+    \end{align*}
+    \item Estimate $\Pr(\bar{X}_n \ge \mu + \epsilon)$ \\
+    Following Theorem 2.5, we have:
+    \begin{align*}
+       \frac{1}{n} \Pr(\bar{X}_n \ge \mu + \epsilon) &\le - I_{X_1}(\mu + \epsilon) = \inf_{\lambda > 0}[-\lambda(\mu + \epsilon) + \ln\mathbb{E}\exp(\lambda X_1)] \\ 
+       &= \inf_{\lambda > 0}\left[-\lambda(\mu + \epsilon) + \frac{\lambda^2}{2} + \ln (\lambda^2 + 1)\right] \\
+       & \le \inf_{\lambda > 0}\left[-\lambda(\mu + \epsilon) + \frac{3\lambda^2}{2} \right] = - \frac{(\mu + \epsilon)^2}{6}
+    \end{align*}
+    Therefore, we have:
+    \begin{align*}
+        \Pr(\bar{X}_n \ge \mu + \epsilon) \le \exp \left[ \frac{-n(\mu + \epsilon)^2}{6} \right]
+    \end{align*}
+    \item Estimate $\Pr(\bar{X}_n \le \mu - \epsilon)$ \\
+    Following Theorem 2.5, we have:
+    \begin{align*}
+       \frac{1}{n} \Pr(\bar{X}_n \le \mu - \epsilon) &\le - I_{X_1}(\mu - \epsilon) = \inf_{\lambda < 0}[-\lambda(\mu - \epsilon) + \ln\mathbb{E}\exp(\lambda X_1)] \\ 
+       &= \inf_{\lambda < 0}\left[-\lambda(\mu - \epsilon) + \frac{\lambda^2}{2} + \ln (\lambda^2 + 1)\right] \\
+       & \le \inf_{\lambda < 0}\left[-\lambda(\mu - \epsilon) + \frac{3\lambda^2}{2} \right] = - \frac{(\mu - \epsilon)^2}{6}
+    \end{align*}
+    Therefore, we have:
+    \begin{align*}
+        \Pr(\bar{X}_n \le \mu - \epsilon) \le \exp \left[ \frac{-n(\mu - \epsilon)^2}{6} \right]
+    \end{align*}
+\end{itemize}
+
       
