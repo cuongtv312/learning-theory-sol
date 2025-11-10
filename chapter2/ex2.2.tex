@@ -1,0 +1,64 @@
+\section{Excercise}
+
+\textbf{Ex 2.2} Prove  Proposition 2.8.
+
+From Def 2.4, we have:
+\begin{align*}
+\Lambda_X(\lambda) = \ln \mathbb{E}[e^{\lambda X}]
+\end{align*}
+
+First, we obtain the derivative at 0:
+\begin{align*}
+\Lambda_X'(\lambda) = \frac{\mathbb{E'}[e^{\lambda X}]} {\mathbb{E}[e^{\lambda X}]} = \frac{\mathbb{E}[Xe^{\lambda X}]} {\mathbb{E}[e^{\lambda X}]} \\
+\Rightarrow \Lambda_X'(0) = \mathbb{E}[X]
+\end{align*}
+
+Similarly, we obtain the second derivative at 0:
+\begin{align*}
+\Lambda_X''(0) = \mathbb{E}[X^2] - (\mathbb{E}[X]^2) = \text{Var(X)}
+\end{align*}
+
+Because, $\mathbb{E}[e^{\lambda X}$ is twice differentiable, we can compute the second-order Taylor expansion as:
+\begin{align*}
+\mathbb{E}[e^{\lambda X}] = 1 + \mathbb{E}[X]\lambda + \frac{\mathbb{E}[X^2]}{2}\lambda^2 + o(\lambda^2)
+\end{align*}
+
+To compute the Taylor expansion of $\Lambda_X(\lambda)$, we compute the Taylor of $\ln \mathbb{E}[e^{\lambda X}] = \ln (1 + Y)$, then the result is:
+
+\begin{align*}
+\Lambda_X(\lambda) = \ln (1 + Y) = Y - \frac{1}{2}Y^2 + o(Y^2) \\
+= \mathbb{E}[X]\lambda + \frac{1}{2}(\mathbb{E}[X^2] - \mathbb{E}[X]^2)\lambda^2 + o(\lambda^2) \\
+= \mu \lambda + \frac{\lambda^2}{2}\text{Var}(X) + o(\lambda^2)
+\end{align*}
+
+With $X_1,X_2,...X_n$ are i.i.d with $\mu = \mathbb{E}[X]$ and $\overline{X_n} = \frac{1}{n}\sum X_i$
+
+From Theorem 2.5, we have with every $\lambda > 0$:
+
+\begin{align*}
+    \text{Pr}(\overline{X_n} \geq \mu + \epsilon) \leq \text{exp}[-nI_{X_1}(\mu + \epsilon)],
+    \\
+    I_X(\mu + \epsilon) = \text{sup} \{\lambda (\mu + \epsilon) - \Lambda_X(\lambda)\}
+\end{align*}
+
+As shown in Example 2.6,the optimal we shall choose is $\lambda = 0$. The Taylor expansion:
+
+\begin{align*}
+    \Lambda_X(\lambda) = \lambda \mu + \frac{\lambda^2}{2}\text{Var}[X] + o(\lambda^2)
+\end{align*}
+
+Now we need to compute the optimize $\lambda$ through $I_X(\mu + \epsilon)$, we have:
+\begin{align*}
+    \lambda (\mu + \epsilon) - \Lambda_X(\lambda) = (\lambda \mu + \frac{\lambda^2}{2}\text{Var}[X] + o(\lambda^2)) \\
+    = \lambda \epsilon - \frac{\lambda^2}{2}\text{Var}(X_1) + o(\lambda^2)
+\end{align*}
+We differentiate this equation (w.r.t. $\lambda$:
+\begin{align*}
+    \epsilon - \lambda\text{Var}(X_1) + o(\lambda) = 0 \\
+    \Rightarrow \lambda = \frac{\epsilon}{\text{Var}(X_1)} + o(\epsilon)
+\end{align*}
+
+So, the result becomes:
+\begin{align*}
+    I_X(\mu + \epsilon) = \text{sup} \{\lambda (\mu + \epsilon) - \Lambda_X(\lambda)\} = \frac{\epsilon^2}{2\text{Var}(X_1)} + o(\epsilon^2)
+\end{align*}
