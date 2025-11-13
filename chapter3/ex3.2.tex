@@ -1,0 +1,78 @@
+\textbf{(Decision List).}
+A decision list is a function of the following form.  
+Let $\{i_1, \ldots, i_d\}$ be a permutation of $\{1, 2, \ldots, d\}$, and let 
+$a_i, b_i \in \{0,1\}$ for $i = 1, \ldots, d+1$. Then the function $f(x)$ is defined as:
+\[
+f(x) =
+\begin{cases}
+b_1, & \text{if } x_{i_1} = a_1 \\
+b_2, & \text{else if } x_{i_2} = a_2 \\
+\vdots & \\
+b_d, & \text{else if } x_{i_d} = a_d \\
+b_{d+1}, & \text{otherwise.}
+\end{cases}
+\]
+
+\bigskip
+\textbf{Learning algorithm:}
+
+\noindent
+\textit{Input:} Training sample 
+$S_n = \{(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)\}$ 
+where $x_i \in \{0,1\}^d$ and $y_i \in \{0,1\}$.  
+
+\noindent
+\textit{Output:} A decision list 
+$D = [(i_1,a_1, b_1), (i_2,a_2, b_2), \ldots, (i_d,a_d, b_d), b_{d+1}]$.
+
+\begin{enumerate}
+\item Initialize $D = []$ and $S' = S_n$.
+\item While $S'$ is not empty and $|D| < d$:
+    \begin{enumerate}
+    \item For each feature index $i \in \{1, \ldots, d\}$ and value $a \in \{0,1\}$,  
+    check if all examples in $S'$ that satisfy $x_i = a$ have the same label $b$.
+    \item If such $(i,a,b)$ exists, add $(i,a,b)$ to $D$.
+    \item Remove from $S'$ all examples that satisfy the conditions.
+    \end{enumerate}
+\item If $S'$ is empty, set the default value $b_{d+1}$ to any remaining majority label.
+\item Return $D$.
+\end{enumerate}
+
+\bigskip
+\textbf{Running time analysis:}  
+For each of at most $d$ iterations, the algorithm checks at most $2d$ literals 
+($x_i = 0$ or $x_i = 1$), and for each literal scans up to $n$ examples.  
+Hence, the total time complexity is
+\[
+O(n d^2)
+\]
+
+\bigskip
+\textbf{Correctness:}  
+If the target function is representable as a decision list,  
+then at each iteration there exists at least one literal $(x_i = a)$ 
+whose matching examples all share the same label.  
+Thus, the algorithm will find one such pair $(a_i, b_i)$ per iteration and 
+remove covered examples, leading to a perfect hypothesis on the training data:
+\[
+\widehat{\mathrm{err}}(\hat{f}) = 0.
+\]
+
+\bigskip
+\textbf{PAC learnability:}  
+The total number of distinct decision lists is at most 
+\[
+N = d! \cdot 2^{2d+1}.
+\]
+Therefore,
+\[
+\ln N = \ln(d!) + (2d+1)\ln 2 = O(d \log d),
+\]
+  
+
+Hence, the class of decision lists is PAC-learnable because:
+\begin{enumerate}
+    \item the algorithm runs in polynomial time in $n$ and $d$,
+    \item the hypothesis space size is polynomially bounded in $d$ and with theorem 3.6.
+\end{enumerate}
+Therefore, the Decision List concept class is \textbf{computationally efficiently PAC-learnable.}
