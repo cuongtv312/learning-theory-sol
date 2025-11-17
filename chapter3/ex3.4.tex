@@ -1,0 +1,130 @@
+
+\textbf{Example 3.18.}
+Consider the least squares loss
+\[
+L(f(x),y) = (f(x)-y)^2,\qquad L(f(x),y)\le M^2.
+\]
+Define
+\[
+\phi(z) = (f(x)-y)^2 - (f_{\mathrm{opt}}(x)-y)^2.
+\]
+We show that the variance condition
+\[
+\mathbb{E}[\phi(z)^2] \le c_1\,\mathbb{E}[\phi(z)] + c_0
+\]
+holds with:
+
+- $c_0 = 0,\; c_1 = 4M^2$ if it $\mathcal{F}$ is convex.
+
+- $c_0=0,\; c_1=2M^2$ if it $\mathcal{F}$ is only bounded ($f,y\in[0,M]$).
+
+\medskip
+\textbf{Proof:}
+
+\subsubsection*{Case 1: $\mathcal{F}$ convex.}
+
+We expand:
+\[
+\phi(z)= (f-y)^2 - (f_{\mathrm{opt}}-y)^2
+= (f-f_{\mathrm{opt}})(f+f_{\mathrm{opt}}-2y).
+\]
+
+Since $|f-y|\le M$ and $|f_{\mathrm{opt}}-y|\le M$,
+\[
+|f+f_{\mathrm{opt}}-2y|
+\le |f-y| + |f_{\mathrm{opt}}-y|
+\le 2M.
+\]
+
+Thus,
+\[
+\phi(z)^2 \le 4M^2 (f-f_{\mathrm{opt}})^2.
+\]
+
+Taking expectation:
+\[
+\mathbb{E}[\phi(Z)^2]
+\le 4M^2\,\mathbb{E}[(f-f_{\mathrm{opt}})^2].
+\]
+
+From optimality of $f_{\mathrm{opt}}$,
+\[
+\mathbb{E}[(f-Y)^2] - \mathbb{E}[(f_{\mathrm{opt}}-Y)^2]
+= \mathbb{E}[\phi(Z)]
+\ge \mathbb{E}[(f-f_{\mathrm{opt}})^2].
+\]
+
+Hence,
+\[
+\boxed{
+\mathbb{E}[\phi(Z)^2] \le 4M^2\,\mathbb{E}[\phi(Z)],\qquad
+c_0=0,\;c_1=4M^2.
+}
+\]
+
+\bigskip
+
+\subsubsection*{Case 2: $\mathcal{F}$ non-convex, $f,y\in[0,M]$.}
+
+Let $f_*=\mathbb{E}[Y\mid X]$.
+
+\[
+\phi(z) = (f-y)^2 - (f_* - y)^2.
+\]
+
+Expand:
+\[
+f + f_* - 2y = (f - f_*) - 2(y - f_*).
+\]
+
+Since $\mathbb{E}[y - f_* \mid X] = 0$,
+\[
+\mathbb{E}[(f + f_* - 2y)^2 \mid X]
+= (f - f_*)^2 + 4\,\mathbb{E}[(y - f_*)^2 \mid X].
+\]
+
+Thus,
+\[
+\mathbb{E}[\phi(z)^2 \mid X]
+= (f - f_*)^2 \bigl((f - f_*)^2 
++ 4\,\mathbb{E}[(y - f_*)^2 \mid X]\bigr).
+\]
+
+Because $Y\in[0,M]$, Popoviciu’s inequality gives:
+\[
+\mathrm{Var}(Y\mid X) \le \frac{M^2}{4}
+\Rightarrow
+\mathbb{E}[(y - f_*)^2 \mid X] \le \frac{M^2}{4}.
+\]
+
+Hence,
+\[
+\mathbb{E}[\phi(z)^2\mid X]
+\le (f - f_*)^4 + M^2 (f - f_*)^2.
+\]
+
+Taking expectation:
+\[
+\mathbb{E}[\phi(z)^2]
+\le \mathbb{E}[(f - f_*)^4] + M^2\mathbb{E}[(f - f_*)^2].
+\]
+
+Since $|f-f_*|\le M$,
+\[
+(f-f_*)^4 \le M^2 (f-f_*)^2,
+\]
+so
+\[
+\mathbb{E}[\phi(z)^2]
+\le 2M^2\mathbb{E}[(f - f_*)^2]
+= 2M^2\,\mathbb{E}[\phi(z)].
+\]
+
+Therefore,
+\[
+\boxed{
+\mathbb{E}[\phi(z)^2] \le 2M^2\,\mathbb{E}[\phi(z)],
+\qquad
+c_0=0,\; c_1=2M^2.
+}
+\]
