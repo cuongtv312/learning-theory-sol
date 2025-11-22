@@ -1,0 +1,211 @@
+\textbf{Example 3.18.}
+Consider the least squares loss
+\[
+L(f(x),y) = (f(x)-y)^2,\qquad L(f(x),y)\le M^2.
+\]
+Define
+\[
+\phi(z) = (f(x)-y)^2 - (f_{\mathrm{opt}}(x)-y)^2.
+\]
+We show that the variance condition
+\[
+\mathbb{E}[\phi(z)^2] \le c_1\,\mathbb{E}[\phi(z)] + c_0
+\]
+holds with:
+
+- $c_0 = 0,\; c_1 = 4M^2$ if it $\mathcal{F}$ is convex.
+
+- $c_0=0,\; c_1=2M^2$ if it $\mathcal{F}$ is only bounded ($f,y\in[0,M]$).
+
+\medskip
+\textbf{Proof:}
+
+\subsubsection*{Case 1: $\mathcal{F}$ convex}
+
+We consider the squared loss
+\[
+L(f(x),y) = (f(x)-y)^2,\qquad L \le M^2.
+\]
+Define
+\[
+\phi(z) = (f(x)-y)^2 - (f_{\mathrm{opt}}(x)-y)^2.
+\]
+We aim to show the variance condition
+\[
+\mathbb{E}[\phi(Z)^2] \le 4M^2\,\mathbb{E}[\phi(Z)].
+\]
+
+{Bounding $\phi(z)^2$.}
+
+Expand:
+\[
+\phi(z)
+= (f-y)^2 - (f_{\mathrm{opt}}-y)^2
+= (f-f_{\mathrm{opt}})\,(f + f_{\mathrm{opt}} - 2y).
+\]
+Because
+\[
+|f-y|\le M,\qquad |f_{\mathrm{opt}}-y|\le M,
+\]
+we have
+\[
+|f + f_{\mathrm{opt}} - 2y|
+\le |f-y| + |f_{\mathrm{opt}}-y| \le 2M.
+\]
+Thus,
+\[
+\phi(z)^2
+\le (f-f_{\mathrm{opt}})^2\, (2M)^2
+= 4M^2 (f-f_{\mathrm{opt}})^2.
+\tag{1}
+\]
+Taking expectation gives
+\[
+\mathbb{E}[\phi(Z)^2]
+\le 4M^2\,\mathbb{E}[(f-f_{\mathrm{opt}})^2].
+\tag{2}
+\]
+
+{ Relating $\mathbb{E}[(f-f_{\mathrm{opt}})^2]$ to $\mathbb{E}[\phi(Z)]$ using convexity of $\mathcal{F}$.}
+
+Let
+\[
+d(x)=f(x)-f_{\mathrm{opt}}(x).
+\]
+Because $\mathcal{F}$ is convex, for any $t\in[0,1]$,
+\[
+f_t := f_{\mathrm{opt}} + t d \;\in\; \mathcal{F}.
+\]
+Define the risk function along this line:
+\[
+R(t) = \mathbb{E}[(f_t(X)-Y)^2].
+\]
+Since $f_{\mathrm{opt}}$ minimizes $R(\cdot)$ over $\mathcal{F}$, the right derivative at $t=0$ satisfies
+\[
+R'(0^+) \ge 0.
+\tag{3}
+\]
+
+Compute $R'(0)$. We have
+\[
+f_t(X) = f_{\mathrm{opt}}(X) + t d(X),
+\]
+so
+\[
+R(t) = \mathbb{E}[(f_{\mathrm{opt}} + t d - Y)^2].
+\]
+Differentiating,
+\[
+R'(t)
+= 2\,\mathbb{E}\!\left[d(X)\bigl(f_{\mathrm{opt}}(X)+t d(X)-Y\bigr)\right],
+\]
+hence
+\[
+R'(0) = 2\,\mathbb{E}[d(X)(f_{\mathrm{opt}}(X)-Y)].
+\tag{4}
+\]
+From (3) and (4),
+\[
+\mathbb{E}[d(X)(f_{\mathrm{opt}}(X)-Y)] \ge 0.
+\tag{5}
+\]
+
+Now expand $\phi$:
+\[
+(f-Y)^2 - (f_{\mathrm{opt}}-Y)^2
+= (d)^2 + 2d(f_{\mathrm{opt}}-Y).
+\]
+Taking expectation:
+\[
+\mathbb{E}[\phi(Z)]
+= \mathbb{E}[d^2] + 2\,\mathbb{E}[d(f_{\mathrm{opt}}-Y)].
+\]
+Using (5), the second term is nonnegative; therefore
+\[
+\boxed{
+\mathbb{E}[d^2] \le \mathbb{E}[\phi(Z)].
+}
+\tag{6}
+\]
+
+{ Conclusion.}
+
+Combine (2) and (6):
+\[
+\mathbb{E}[\phi(Z)^2]
+\le 4M^2\,\mathbb{E}[(f-f_{\mathrm{opt}})^2]
+\le 4M^2\,\mathbb{E}[\phi(Z)].
+\]
+
+Thus the variance condition holds with
+\[
+\boxed{
+c_0 = 0,\qquad c_1 = 4M^2.
+}
+\]
+
+\subsubsection*{Case 2: $\mathcal{F}$ non-convex, $f,y\in[0,M]$.}
+
+Let $f_*=\mathbb{E}[Y\mid X]$.
+
+\[
+\phi(z) = (f-y)^2 - (f_* - y)^2.
+\]
+
+Expand:
+\[
+f + f_* - 2y = (f - f_*) - 2(y - f_*).
+\]
+
+Since $\mathbb{E}[y - f_* \mid X] = 0$,
+\[
+\mathbb{E}[(f + f_* - 2y)^2 \mid X]
+= (f - f_*)^2 + 4\,\mathbb{E}[(y - f_*)^2 \mid X].
+\]
+
+Thus,
+\[
+\mathbb{E}[\phi(z)^2 \mid X]
+= (f - f_*)^2 \bigl((f - f_*)^2 
++ 4\,\mathbb{E}[(y - f_*)^2 \mid X]\bigr).
+\]
+
+Because $Y\in[0,M]$, Popoviciu’s inequality gives:
+\[
+\mathrm{Var}(Y\mid X) \le \frac{M^2}{4}
+\Rightarrow
+\mathbb{E}[(y - f_*)^2 \mid X] \le \frac{M^2}{4}.
+\]
+
+Hence,
+\[
+\mathbb{E}[\phi(z)^2\mid X]
+\le (f - f_*)^4 + M^2 (f - f_*)^2.
+\]
+
+Taking expectation:
+\[
+\mathbb{E}[\phi(z)^2]
+\le \mathbb{E}[(f - f_*)^4] + M^2\mathbb{E}[(f - f_*)^2].
+\]
+
+Since $|f-f_*|\le M$,
+\[
+(f-f_*)^4 \le M^2 (f-f_*)^2,
+\]
+so
+\[
+\mathbb{E}[\phi(z)^2]
+\le 2M^2\mathbb{E}[(f - f_*)^2]
+= 2M^2\,\mathbb{E}[\phi(z)].
+\]
+
+Therefore,
+\[
+\boxed{
+\mathbb{E}[\phi(z)^2] \le 2M^2\,\mathbb{E}[\phi(z)],
+\qquad
+c_0=0,\; c_1=2M^2.
+}
+\]
+
