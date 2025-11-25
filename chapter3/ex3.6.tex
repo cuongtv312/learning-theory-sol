@@ -1,0 +1,42 @@
+\textbf{Exercise 3.6.}
+Example 3.20: In the example of Section 3.5 (A simple Example), there 
+exist $p$ dependent constants $c_0(p)$ and $c_1(p)$ such that the $\epsilon$ lower 
+bracket cover of $\mathcal{G}$ satisfies 3.14 with
+$c_0^2 = c_0(p)\epsilon$ and $c_1 = c_1(p)$
+
+\textbf{Proof:}
+
+Recall equation 3.14: For all $\phi(z) \in \mathcal{G}$,
+\[
+    \mathbb{E}_{Z \sim D}\left[ \phi(Z)^2 \right] \leq c_0^2 + c_1 \mathbb{E}_{Z \sim D}[\phi(Z)]
+\]
+
+Let $\phi_j(z) \in \mathcal{G}$,
+
+
+If $w_j \leq w^*$, $\phi_j(z) = 0$ when $z \notin [w_j, w^*]$.
+    When $x \in [w_j, w^*]$, $\mathbb{P}(y=1|x) = 1 - p$ and $\phi_j(z) = \phi(w_j, z)$. Thus, 
+\[
+    \mathbb{P}(\phi(w_j, z) = 1|x) = 1 - p
+\]
+\[
+    \mathbb{P}(\phi(w_j, z) = -1|x) = p  
+\]
+So, 
+\[
+    \mathbb{E}_{Z \sim D}(\phi_j(Z)) = \mathbb{E}_{X \in [w_j, w^*]}(\phi_j(Z)) = (w^* - w_j)(2p - 1)
+\]
+\[
+    \mathbb{E}_{Z \sim D}(\phi_j(Z)^2) = \mathbb{E}_{X \in [w_j, w^*]}(\phi_j(Z)^2) = (w^* - w_j)
+\]
+This implies $c_0 = 0$ and $c_1 = \frac{1}{2p - 1}$
+
+If $w_j > w^* + \epsilon$, similarly, we can derive $c_0 = 0$ and $c_1 = \frac{1}{2p - 1}$
+
+If $w_j > W^* > w_j - \epsilon$, $\phi_j(z) = 0$ $\forall z$, thus 3.14 still holds with $c_0 = 0$ and $c_1 = \frac{1}{2p - 1}$
+
+Therefore, the inequality
+\[
+    \mathbb{E}_{Z \sim D}\left[ \phi(Z)^2 \right] \leq c_0^2 + c_1 \mathbb{E}_{Z \sim D}[\phi(Z)]
+\]
+satisfies with $c_0 = 0$ and $c_1 = \frac{1}{2p - 1}$.
