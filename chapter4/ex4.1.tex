@@ -1,0 +1,21 @@
+\textbf{Exercise 4.1}
+Prove that:
+\[
+\sum_{\ell=0}^{d} \binom{n}{\ell} \le (en/d)^d.
+\]
+holds for $n \geq d$
+
+\textbf{Proof}
+Since $d \leq n, l - d \leq 0$ then
+\[
+\sum_{\ell=0}^{d} \binom{n}{\ell} \leq \sum_{\ell=0}^{d} \binom{n}{\ell} (d/n)^{l - d}
+= \left(\frac{n}{d}\right)^d\ \sum_{\ell=0}^{d} \binom{n}{\ell} (d/n)^{l}
+\]
+
+Following Binomial theorem $(1 + x)^n = \sum_{\ell=0}^{d} \binom{n}{\ell}x^l$ and inequality
+$(1 + \frac{a}{x})^x \leq e^a$ for $x > 0$ we have:
+\[
+\left(\frac{n}{d}\right)^d\ \sum_{\ell=0}^{d} \binom{n}{\ell} (d/n)^{l} \leq 
+\left(\frac{n}{d}\right)^d\ \sum_{\ell=0}^{n} \binom{n}{\ell} (d/n)^{l}
+= \left(\frac{n}{d}\right)^d\left( 1 + \frac{d}{n} \right)^n \leq \left(\frac{n}{d}\right)^d e^d
+\]
