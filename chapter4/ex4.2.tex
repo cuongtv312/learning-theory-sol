@@ -1,0 +1,44 @@
+\textbf{Exercise 4.2}
+Prove that for any non-decreasing convex function $\Phi: R_+ \rightarrow R_+$ , the following sym-metrization inequality holds.
+\[
+\mathbb{E}\ \Phi \left( \sup_{f \in \mathcal{F}} [ f(S_n) - f(\mathcal{D}) ] \right)
+\leq \mathbb{E} \ \Phi \left( 2\sup_{f \in \mathcal{F}} f(\sigma, S_n)  \right)
+\]
+
+\textbf{Proof}
+Since f is fixed (not data-dependent), we can choose: $S_n' = \{ Z_1', Z_2', .. Z_n' \}$ be an i.i.d copy of $S_n$, independent of $S_n$ with $\mathbb{E} f(S_n') = f(\mathcal{D})$ so:
+\[
+f(S_n) - f(\mathcal{D}) = \mathbb{E}_{S_n'} [f(S_n) - f(S_n')]
+\]
+We have:
+\[
+\sup_{f \in \mathcal{F}} \left( \mathbb{E}_{S_n'} [f(S_n) - f(S_n')] \right) \leq
+ \mathbb{E}_{S_n'} \sup_{f \in \mathcal{F}}  [f(S_n) - f(S_n')] 
+\]
+Using non-decreasing convex properties of function $\Phi$ and Jensen's inequality:
+\[
+ \Phi \left( \sup_{f \in \mathcal{F}} [ f(S_n) - f(\mathcal{D}) ] \right) 
+\leq \Phi \left( \mathbb{E}_{S_n'} \sup_{f \in \mathcal{F}}  [f(S_n) - f(S_n')] \right)
+\leq \mathbb{E}_{S_n'}  \left( \Phi \sup_{f \in \mathcal{F}}  [f(S_n) - f(S_n')] \right)
+\]
+\[
+\implies \mathbb{E}_{S_n}\ \Phi \left( \sup_{f \in \mathcal{F}} [ f(S_n) - f(\mathcal{D}) ] \right)
+\leq \mathbb{E}_{S_n,S_n'}  \left( \Phi \sup_{f \in \mathcal{F}}  [f(S_n) - f(S_n')] \right)
+\]
+With symmetrization:
+\[
+\mathbb{E}_{S_n,S_n'}  \left( \Phi \sup_{f \in \mathcal{F}}  [f(S_n) - f(S_n')] \right)
+= \mathbb{E}_{S_n,S_n',\sigma}  \left( \Phi \sup_{f \in \mathcal{F}}  [f(\sigma, S_n) + (-f(\sigma, S_n') ) ] \right)
+\]
+\[
+\stackrel{(a)}{\leq} \mathbb{E}_{S_n,S_n',\sigma}  \left( \Phi [ \sup_{f \in \mathcal{F}} f(\sigma, S_n) + \sup_{f \in \mathcal{F}}-f(\sigma, S_n')] \right)
+\]
+\[
+\stackrel{(b)}{\leq} \mathbb{E}_{S_n,S_n',\sigma}  \left( \frac{1}{2}  [ \Phi(2\sup_{f \in \mathcal{F}} f(\sigma, S_n)) + \Phi (2\sup_{f \in \mathcal{F}}-f(\sigma, S_n')) ] \right)
+\]
+\[
+\leq \mathbb{E}_{S_n,S_n',\sigma}  \left(   \Phi(2\sup_{f \in \mathcal{F}} f(\sigma, S_n))   \right)
+\]
+First equation used $f(s_n) - f(S_n')$ and $f(\sigma, S_n) - f(\sigma, S_n')$ have the same distributions. (a) used the fact that $\sup A + B \leq \sup A + \sup B$.
+(b) used Jensen's inequality. The last inequality used the symmetry of $f(\sigma, S_n)$ and $-f(\sigma, S_n')$
+The result implies the desired bound.
