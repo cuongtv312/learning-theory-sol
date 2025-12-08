@@ -1,0 +1,30 @@
+\textbf{Exercise 4.3} Recall in proof of Lemma 11:
+\begin{align*}
+    &E_1 = \{ \psi_{val}(\hat{f}, S_n') \le \psi_{trn}(\hat{f}, S_n) + \epsilon_n^1(\delta_1)\}\\
+    &E_2 =\{ \psi_{tst}(\hat{f},\mathcal{D}) \le \psi_{val}(\hat{f}, S_n') + \epsilon_n^2(\delta_2) \}\\
+    &E = \{ \sup_{f \in \mathcal{F}} Q(f, S_n) \le 0 \} \\
+    &where\ Q(f, S_n) = \psi_{tst}(f, \mathcal{D}) - \psi_{trn}(f, S_n) - (\epsilon_n^1(\delta_1)+\epsilon_n^2(\delta_2))
+\end{align*}
+Show that $Pr(E^C\&E_2) \le Pr(E_1^C)$
+Use this relation to show that $Pr(E) \ge 1 - \frac{\delta_1}{1- \delta_2}$
+
+\textbf{Proof}
+When $E^C $ and $E_2$ both hold, we have:
+\begin{align*}
+    &\psi_{tst}(\hat{f}, \mathcal{D}) > \psi_{trn}(\hat{f}, S_n) + \epsilon_n^1(\delta_1) + \epsilon_n^2(\delta_2)\\
+    &\psi_{tst}(\hat{f}, \mathcal{D}) \leq \psi_{val}(\hat{f}, S_n') + \epsilon_n^2(\delta_2)\\
+    &\implies \psi_{val}(\hat{f}, S_n') > \psi_{trn}(\hat{f}, S_n) + \epsilon_n^1(\delta_1)
+\end{align*}
+which is event $E_1^C$. That implies $Pr(E^C\&E_2) \le Pr(E_1^C)$.
+
+Following assumption of Lemma 4.11:
+\[
+Pr(E_2^C) \le \delta_2
+\implies Pr(E_2^C | E^C) \le \delta_2
+\]
+Since $Pr(E^C) = Pr(E^C \cap E_2^C) + Pr(E^C \cap E_2) \le Pr(E^C) Pr(E_2^C|E^C) + Pr(E^C_1)$:
+\begin{align*}
+    &Pr(E^C) \le Pr(E^C_1) + \delta_2Pr(E^C)
+\implies Pr(E^C)(1-\delta_2) \le Pr(E_1^C) \le \delta_1\\
+    &\implies 1 - Pr(E) \le \delta_1 / (1 - \delta_2) \implies Pr(E) \ge 1 - \delta_1 / (1 - \delta_2)
+\end{align*}
