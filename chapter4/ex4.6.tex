@@ -1,0 +1,43 @@
+\textbf{Exercise 4.6} Consider $z \in R^d$, let $w = [w_1, w_2, ..., w_d, w_{d+1}, ..., w_{2d}]$.
+Find the VC dimension of the function class
+\[
+f_w(z) = \mathbbm{1}\left(z \in C(w)\right),
+\]
+where $C(w) = \{ z = [z_1, ..., z_d]: z_j \in [w_j, w_{d+j}] \}$
+
+\textbf{Proof}
+We prove 2d is VC dimension by showing:
+
+1. There exists a set of 2d points that can be shattered.
+
+We have: 
+\[
+S =\{ e_j, -e_j: j = 1..d \}
+\]
+which $e_j$ is canonical basis of $R^d$. S contains 2d points.
+
+For any subset $S' \subset S$, $\exists R$ contains exactly the points in S' by setting $w_j, w_{j+d}$ for each coordinate $j=1..d$ as:
+\begin{align*}
+    &= [-1,1]\ if\ e_j,-e_j \in S'\\
+    &= [0, 1]\ if\ only\ e_j \in S'\\
+    &= [-1, 0]\ if\ only\ -e_j \in S'\\
+    &= [-0.5, 0.5]\ if\ neither\ e_j\ or\ -e_j \in S'
+\end{align*}
+
+
+2. No set of 2d + 1 points can be shattered.
+
+Suppose we have set S contains 2d + 1 points, we choose:
+\begin{align*}
+    l_j = \min\{ x_j: x\in S \}\\
+    u_j = \max\{ x_j: x \in S\}
+\end{align*}
+Then, by pigeonhole principle, $\exists p$ such that $l_j < p_j < u_j$.
+
+We label p as 0 and all others are 1. 
+Assume R can realize this label. Then,
+\[
+R = \{w_1, w_2, ..w_{2d}\} =\{l_1,..l_d,u_1,..u_d\}
+\]
+Which means R consider p as 1 because of $l_j < p_j < u_j$ $\implies$ contradiction. Hence, 
+set of 2d + 1 points cannot be shattered.
