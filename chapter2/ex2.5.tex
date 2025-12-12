@@ -1,5 +1,5 @@
 \textbf{Exercise 2.5}
-Assume that the density function of a distribution $\mathcal{D}$ is $(1-p)U(-1, 1) + pU(\frac{-1}{p}, \frac{1}{p})$ for $p \in (0, 0.5)$, where $U(.)$ denoted the density of the uniform distribution. Let $X_1,...., X_n$ be iid samples from $\mathcal{D}$. For $\epsilon > 0$, estimate the probability
+Assume that the density function of a distribution $\mathcal{D}$ is $(1-p)U(-1, 1) + pU(\frac{-1}{p}, \frac{1}{p})$ for $p \in (0, 0.5)$, where $U(.)$ denoted the density of the uniform distribution. Let $X_1,\dots, X_n$ be iid samples from $\mathcal{D}$. For $\epsilon > 0$, estimate the probability
 
 \begin{equation}
     Pr(\frac{1}{n}\sum_{i=1}^{n}X_i \ge \epsilon)
@@ -58,6 +58,6 @@ Subtituting to Bernstein's inequality we have that:
 \le \exp\Bigg( \frac{-n\epsilon^2}{2V + \frac{2\epsilon b}{3}} \Bigg) \\[1mm]
 &\Pr\Big[\bar{X} \ge \epsilon \Big] 
 \le \exp\Bigg( \frac{-n\epsilon^2}{\frac{2}{3}\Big(1-p+\frac{1}{p}\Big) + \frac{2\epsilon}{3p}} \Bigg) \\[1mm]
-&\textcolor{black}{\boxed{\Pr\Big[\bar{X} \ge \epsilon \Big] \le \exp\Big( \frac{-3 n \epsilon^2}{2(1-p+\frac{1+\epsilon}{p})} \Big)}} 
+&\Pr\Big[\bar{X} \ge \epsilon \Big] \le \exp\Big( \frac{-3 n \epsilon^2}{2(1-p+\frac{1+\epsilon}{p})} \Big)
 \end{align*}
 
