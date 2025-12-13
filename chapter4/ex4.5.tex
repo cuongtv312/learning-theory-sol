@@ -1,0 +1,30 @@
+\textbf{Exercise 4.5} Prove: If $\phi(w, z) \in [0,1]$. Let $\mathcal{G} =\{\phi*w, Z):w\in\ \Omega\}$. With prob. at least $1 - \delta$, the approximate ERM method satisfies the (additive)  oracle inequality:
+\[
+\mathbf{E}_{Z\sim D}\phi(\hat{w}, Z) \leq  inf_{Z\sim D}\phi(w, Z) + \epsilon' + inf_{\epsilon > 0} \left[ 2\epsilon + \sqrt{\frac{8ln(4N_1(\epsilon, \mathcal{G}, n)/\delta}{n}} \right].
+\]
+Moreover, we have the following (multiplicative oracle ineq. for all $\gamma \in (0,1)$: with pprob at least $1 - \delta$,
+\[
+(1 - \gamma)^2\mathbf{E}_{Z\sim D}\phi(\hat{w}, Z) \leq  inf_{Z\sim D}(1 + \gamma)\phi(w, Z) + \epsilon' + inf_{\epsilon > 0} \left[ 2\epsilon + \frac{(6 - 3\gamma)ln(4N_1(\epsilon, \mathcal{G}, n)/\delta}{2\gamma n} \right].
+\]
+
+\textbf{Proof}
+From Theorem 4.12, we have, with prob at least $1 - \delta/2$, 
+\[
+\forall w \in \Omega: \phi(w, \mathcal{D}) 
+\leq \phi(w, \mathcal{S}_n) 
++ inf_{\epsilon > 0} \left[ 2\epsilon + 3\sqrt{\frac{ln(6N_1(\epsilon, \mathcal{G},2n)/\delta}{2n}} \right],
+\]
+Moreover, for each $w \in \Omega$, by Chernoff (additive), we have with prob at least $1 - \delta/2$:
+\[
+\phi(w,S_n) \leq \phi(w, D) + \sqrt{\frac{ln2/\delta}{2n}} 
+\]
+\[
+< \phi(w, D) + \sqrt{\frac{ln(6N_1(\epsilon, \mathcal{G},2n)/\delta}{2n}}
+\]
+Apply theorem 3.11 with $\alpha = \alpha' = 1$, we derive first desired bound.
+
+To derive second bound, we set $\alpha = 1 - \gamma, \alpha'=1+\gamma$, apply second bound in theorem 4.12, apply multiplicate Chenoff bound, for each $w \in \Omega$, with pprob at least $1 - \delta/2$,
+\[
+\phi(w,S_n) \leq (1 + \gamma)\phi(w, D) + \frac{(3+2\gamma)ln(2/\delta)}{6\gamma n} < 
+(1 + \gamma)\phi(w, D) + \frac{(3+2\gamma)ln(4N_1(\epsilon,\mathcal{G},n)/\delta)}{6\gamma n}
+\]
