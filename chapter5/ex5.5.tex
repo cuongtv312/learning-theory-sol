@@ -1,0 +1,50 @@
+\textbf{Exercise 5.5} Consider the set
+\[
+\Omega = \{ x= [x_1, x_2, ...] \in \mathbb{R}^\infty : \Sigma_{i=1}^{\infty} i \cdot x_i^2 \leq 1 \}
+\]
+with metric induced by the $L_2$-norm $||x||_2 = \sqrt{\Sigma_{i=1}^\infty x_i^2 }$. Derived an upper bound and a lower bound for $ln N (\epsilon, \Omega, ||\cdot||_2)$
+
+\textbf{Proof:}
+Upper bound:
+We have:
+\[
+\Sigma_{d + 1}^\infty x_i^2 = \Sigma_{d+1}^\infty \frac{1}{i} i x_i^2 \leq \frac{1}{d + 1} \Sigma_{d+1}^\infty i x_i^2 = \frac{1}{d + 1} \leq \frac{1}{d}
+\]
+Set $d = \frac{4}{3\epsilon^2} \implies \Sigma_{i > d}^\infty x_i^2 \leq \frac{3\epsilon^2}{4}$
+
+Let $x^{(d)} = \{x_1 ... x_d\}$ is x with first d coordinates $\implies x^{(d)} \in \Omega_d$
+\[
+\Omega_d = \{(x_1 \dots x_d):\Sigma_{i = 1}^d i x_i^2 \leq 1\}
+\]
+Because of $\Sigma_{i=1}^d x_i^2 \leq \Sigma_{i=1}^d i x_i^2 \leq 1 \implies ||x||_2 \leq 1 \implies \Omega_d \subset B_2^d(1) $ Let $\{y^{(1)}, ..., y^{(M)}\}$ is $\frac{\epsilon}{2}$-packing number of $\Omega_d$. It follows that
+\[
+M(\frac{\epsilon}{2}, \Omega_d, L_2) \le M(\epsilon/2, B_2^d(1), L_2) \leq (1 + \frac{4}{\epsilon})^d
+\]
+Let $\hat{y}^{(j)} = \{ y^{j}_1,... y^j_d, 0, ... \}$. We have $\forall x^{(d)} \in \Omega_d$ exist a $y^{(j)} \in \{y^{(1)}, ..., y^{(M)}\}$ which is $\frac{\epsilon}{2}$-packing number of $\Omega_d$ satisfies:
+\[
+||x^{(d)} - y^{(j)}||_2 \leq \frac{\epsilon}{2} \implies ||x-\hat{y}^{(j)}||_2^2 = ||x^{(d)} - y^{(j)}||_2^2 + \Sigma_{i = d+1}^\infty x_i^2 \leq \left(\frac{\epsilon}{2}\right)^2 + \frac{3\epsilon^2}{4} = \epsilon^2
+\]
+It means that $\{y^{(1)}, ..., y^{(M)}\}$ is $\epsilon$-covering number of $\Omega$. So,
+\[
+N(\epsilon, \Omega, L_2) \le M(\epsilon/2, \Omega_d, L_2) \le (1 + 4/\epsilon) ^ d
+\]
+
+Lower bound:
+Let $\{\hat{y}^{(1)}, ..., \hat{y}^{(M)}\}$ is $\epsilon$-covering of $\Omega$. Hence, $\forall x \in \Omega$ exists a $\hat{y}^{(j)} \in \{\hat{y}^{(1)}, ..., \hat{y}^{(M)}\}$ satisfies:
+\[
+||x - \hat{y}^{(j)}||_2 \leq \epsilon \implies ||x^{(d)} - y^{(j)}||_2 \leq \epsilon
+\]
+with $y^{(j)} \in \Omega_d$ obtained by setting value of tail coordinate of $\hat{y}$ become 0.
+For any $x\in R^d$ with $||x||_2 \le 1/\sqrt{d}$ we have:
+\[
+\Sigma_{i=1}^d ix_i^2 \le d ||x||_2^2 \le 1
+\]
+which mean $B_2^d(1/\sqrt{d})\subset \Omega_d$.
+Following that, we have:
+\[
+N(\epsilon, \Omega, L_2) \ge N(\epsilon, \Omega_d, L_2) \ge N(\epsilon, B_2^d(1/\sqrt{d}), L_2) \ge (1 / (\sqrt{d} \epsilon) ) ^ d
+\]
+We obtain inequality:
+\[
+d\ln(1/(\sqrt{d}\epsilon)) \le ln N \le dln(1 + 4/\epsilon)
+\]
