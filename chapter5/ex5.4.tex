@@ -1,0 +1,53 @@
+\textbf{Exercise 5.4} Consider the following set in $\mathcal{R}^d$:
+\[
+    \Omega = \{ x : \| x \|_p \leq 1 \},
+\]
+where $ 1 \leq p < 2 $. Show that there are constants $C_p$ and $r_p$ such that
+\[
+    \ln N(\epsilon, \Omega, \| \cdot \|_2) \leq C_p d \epsilon^{-r_p} \ln d.
+\]
+
+\textbf{Idea:}
+with $p < 2$, only few coordinates of $x$ can be large, and most of them must be small \\
+we onnly covering $k$ largest coordinates (covering number grow exponential in $k$) and accept small cost from small coordinates
+ (controll $k$ by $\epsilon$ and $p$)
+
+\textbf{Proof:}
+Let $x \in \mathcal{R}^d$, sort coordinates:
+\[
+    |x_1| \geq |x_2| \geq \ldots \geq |x_k| \geq \ldots \geq |x_{d}|
+\]
+since $\| x \|_p \leq 1$, we have
+\[
+    \sum_{i=1}^d |x_i|^p \leq 1,
+\]
+which implies
+\[
+    |x_i| \leq i^{-\frac{1}{p}}
+\]
+Let $k$ be an int, we control contribution of small coordinates in $L_2$ norm:
+\[
+    \sqrt{\sum_{i=k+1}^{d}|x_i|^2} \leq \sqrt{\sum_{i=k+1}^{d} i^{-\frac{2}{p}}} \leq \sqrt{\int_{k}^{\infty} x^{-\frac{2}{p}} dx} = \sqrt{\frac{p}{2-p} k^{1- \frac{2}{p}}}
+\]
+we choose $k$ large enough to ensure cost of small coordinates is less than $\epsilon/2$:
+\[
+    \sqrt{C_p k^{1- \frac{2}{p}}} \leq \frac{\epsilon}{2} \implies k \geq C_p \epsilon^{-\frac{2p}{2-p}}
+\]
+
+Now we only need to cover first $k$ coordinates in $L_2$ norm with error $\epsilon/2$.
+\[
+    \Omega_{k\_largest\_coordinates} \in \{ x \in \mathcal{R}^k : \| x \|_2 \leq 1 \} = B_2^k
+\]
+thereom 5.3 implies that
+\[
+    N(\epsilon/2, B_2^k, \| \cdot \|_2) \leq (1 + \frac{4}{\epsilon})^k \leq \left(\frac{C}{\epsilon}\right)^k
+\]
+Since $k$ largest coordinates can be any subset of size $k$ from $d$ coordinates, we build ${d \choose k}$ such coverings
+thus
+\[
+    \ln N(\epsilon, \Omega, \| \cdot \|_2) \leq \ln {d \choose k} + k \ln (C/\epsilon) \leq k \ln (ed/k) + k \ln (C/\epsilon)
+\]
+substituting $k = C \epsilon^{-\frac{2p}{2-p}}$, we have
+\[
+    \ln N(\epsilon, \Omega, \| \cdot \|_2) \leq C_p \epsilon^{-\frac{2p}{2-p}} \ln d
+\]
